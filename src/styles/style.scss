@@ -1,0 +1,273 @@
+@import url(https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Mono&display=swap);
+
+body {
+  background: #051544;
+  font-family: 'Roboto Mono', monospace;
+  font-style: normal;
+  line-height: 10px;
+  letter-spacing: 0.1em;
+  color: #7BF762;
+}
+
+h1 {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  text-align: center;
+  letter-spacing: 0.2em;
+  margin-top: 8px;
+  margin-bottom: 32px;
+}
+
+h2 {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 18px;
+  margin: 0;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.hidden {
+  display: none;
+}
+
+$transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+
+.card {
+  display: inline-block;
+  transition: $transition;
+  background: transparent;
+  margin-right: 32px;
+  margin-bottom: 48px;
+  cursor: pointer;
+}
+
+/* Selectable */
+$deselected-color: #5A8F4F;
+$selected-color: #7BF762;
+
+.card .selectable {
+  position: relative;
+  transition: $transition;
+  width: 160px;
+  height: 100%;
+  color: $deselected-color; 
+  .border-overlay {
+    position: absolute;
+    width: calc(100% - 3px); //Border takes 3px from left & right
+    height: calc(100% - 3px); //Border takes 3px from top & bottom
+    border: 1.5px solid $deselected-color;
+    border-radius: 8px;
+    transition: $transition;
+  }
+  .border-box, .border-glow {
+    position: absolute;
+    width: calc(100% - 3px); //Border takes 3px from left & right
+    height: calc(100% - 3px); //Border takes 3px from top & bottom
+    border: 1.5px solid $deselected-color;
+    border-radius: 8px;
+    transition: $transition;
+    z-index:-1;
+  }
+  .border-box {
+    background: #051544;
+  }
+  
+  &.selected {
+    color: $selected-color; 
+    
+   .border-overlay {
+      border-color: $selected-color;
+    }
+    
+    .border-glow {
+      border-color: $selected-color;      
+      filter: drop-shadow(0px 0px 10px #7BF762);
+    }
+    
+  }
+  
+  &:hover {
+    border-color: $selected-color;
+  }
+  
+  &:focus {
+    border-color: $selected-color;
+  }
+}
+
+.content {
+  text-align: center;
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  
+  .title { 
+    font-size: 14px;
+    line-height: 10px;
+    margin: 0;
+    padding-top: 16px;
+    flex: 0 1 auto;
+  }
+  .price { 
+    font-size: 12px;
+    line-height: 10px;
+    margin: 0;
+    flex: 0 1 auto;
+  }
+  .colorBox {
+    position: relative;
+    width: 64px;
+    height: 32px;
+    border-radius: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 16px;
+    margin-bottom: 8px;
+  }
+  p:last-child {
+    padding-top: 16px;
+    padding-bottom: 12px;
+  }
+  p:last-child.title {
+    padding-bottom: 16px;
+  }
+  .list {
+    list-style: none;
+    text-align: left;
+    padding: 14px;
+    padding-bottom: 12px;
+    padding-right: 0;
+    background-color: #1C3C16;
+    border-radius: 8px;
+    margin-top: 10px;
+    margin-bottom: 0;
+    flex: 1 1 auto;
+    
+    li {
+      /*font-family: 'Roboto', sans-serif;*/
+      font-size: 12px;
+      letter-spacing: 0;
+      margin-bottom: 7px;
+    }
+    
+    li:before { 
+      content: '\25B2'; 
+      font-size: 12px;
+      margin-right: 6px;
+    } 
+  }
+}
+
+.package .price { 
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  line-height: 10px;
+  margin-top: 16px;
+}
+
+.package .title { 
+  font-size: 14px;
+  line-height: 10px;
+  padding-top: 22px;
+}
+
+.column {
+  display: inline-block;
+  max-width: 576px;
+  width: 100%;
+  
+  & > .title {
+    text-align: left;
+  }
+  
+  &:last-child {
+    .card {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.placeholder {
+  opacity: 0;
+}
+
+.cardlist {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.column-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.total-container {
+  margin-top: 24px;
+}
+
+.config-container {
+  max-width: 576px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  max-width: 944px;
+  margin: 32px;
+  padding: 32px;
+  left: 50%;
+  transform: translateX(calc(-50% - 32px));
+  border: 1.5px solid $selected-color;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+table {
+  border-spacing: 0;
+  border: 1.5px solid $selected-color;
+  box-sizing: border-box;
+  border-radius: 8px;
+  background-color: #1C3C16;
+  max-width: 352px;
+}
+
+table td {
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.2em;
+  text-align: left;
+  padding-left: 16px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  
+  &.price-tab {
+    color: #FFFFFF;
+  }
+}
+
+.base-price td {
+  padding-top: 16px;
+}
+.option-price td {
+  padding-bottom: 16px;
+}
+
+.total-text, .total-number {
+  font-size: 18px;
+  line-height: 18px;
+  letter-spacing: 0.2em;
+  padding-left: 16px;
+  padding-top: 23px;
+  padding-bottom: 23px;
+  border-top: 1.5px solid $selected-color;
+
+  &.total-number {
+    color: #FFFFFF;
+  }
+}
