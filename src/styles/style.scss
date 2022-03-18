@@ -271,3 +271,19 @@ table td {
     color: #FFFFFF;
   }
 }
+
+@media screen and (max-width: 723px) {
+  .card {
+    margin-bottom: 32px;
+  }
+  .column {
+    &:last-child {
+      .card {
+        margin-bottom: 32px;
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
